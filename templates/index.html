@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Explainer</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    :root {
+        --primary-color: #4a90e2;
+        --secondary-color: #50e3c2;
+        --background-color: #f0f2f5;
+        --card-bg-color: rgba(255, 255, 255, 0.7);
+        --text-color: #333;
+        --header-color: #2d3748;
+        --border-color: #ddd;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #e0eafc, #cfdef3);
+        color: var(--text-color);
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 850px;
+        background-color: var(--card-bg-color);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 0 var(--shadow-color);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 40px;
+    }
+
+    h1 {
+        text-align: center;
+        color: var(--header-color);
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    label {
+        font-weight: 500;
+        color: #4a5568;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        background-color: #fff;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    }
+
+    textarea {
+        height: 300px;
+        resize: vertical;
+    }
+
+    button {
+        padding: 15px 20px;
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.3s;
+        box-shadow: 0 4px 15px 0 rgba(74, 144, 226, 0.4);
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px 0 rgba(74, 144, 226, 0.5);
+    }
+
+    .result {
+        margin-top: 40px;
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        border-left: 5px solid var(--primary-color);
+        box-shadow: 0 4px 15px 0 var(--shadow-color);
+    }
+
+    h2 {
+        margin-top: 0;
+        color: var(--header-color);
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 15px;
+        line-height: 1.7;
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Code Explainer 🧑‍💻</h1>
+        <form action="/" method="POST">
+            <label for="language">Select Language:</label>
+            <label for="language">Select Language:</label>
+            <select name="language" id="language">
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="TypeScript">TypeScript</option>
+                <option value="Java">Java</option>
+                <option value="C#">C#</option>
+                <option value="C++">C++</option>
+                <option value="PHP">PHP</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Go">Go</option>
+                <option value="Swift">Swift</option>
+                <option value="Kotlin">Kotlin</option>
+                <option value="SQL">SQL</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="Shell/Bash">Shell/Bash</option>
+            </select>
+            
+            <label for="code_snippet">Paste Your Code Here:</label>
+            <textarea name="code_snippet" id="code_snippet" required></textarea>
+            
+            <button type="submit">Explain Code</button>
+        </form>
+
+        {% if explanation %}
+        <div class="result">
+            <h2>Explanation</h2>
+            <pre>{{ explanation }}</pre>
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
