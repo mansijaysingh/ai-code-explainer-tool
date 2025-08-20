@@ -11,7 +11,7 @@ A simple yet powerful web application built with Flask and LangChain that levera
 
 **Check out the live version of the app deployed on Render:**
 
-[**https://your-app-name.onrender.com**](https://your-app-name.onrender.com)
+[**https://your-app-name.onrender.com**]([https://your-app-name.onrender.com](https://ai-code-explainer-tool.onrender.com))
 
 *(Note: Free Render instances may take a minute to spin up if they've been inactive.)*
 
@@ -19,7 +19,8 @@ A simple yet powerful web application built with Flask and LangChain that levera
 
 ## 📸 Screenshot
 
-![App Screenshot](./screenshot.png)
+![App Screenshot](<img width="1192" height="879" alt="image" src="https://github.com/user-attachments/assets/cf508714-d8a6-4343-a129-5bdf1a38d5b2" />
+)
 
 ---
 
