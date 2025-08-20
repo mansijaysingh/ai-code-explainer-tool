@@ -10,7 +10,7 @@
     :root {
         --primary-color: #4a90e2;
         --secondary-color: #50e3c2;
-        --background-color: #f0f2f5;
+        --danger-color: #e74c3c;
         --card-bg-color: rgba(255, 255, 255, 0.7);
         --text-color: #333;
         --header-color: #2d3748;
@@ -81,22 +81,37 @@
         resize: vertical;
     }
 
+    .button-group {
+        display: flex;
+        gap: 15px;
+    }
+
     button {
+        flex-grow: 1;
         padding: 15px 20px;
-        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         color: white;
         border: none;
         border-radius: 8px;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.3s;
+        transition: transform 0.2s, box-shadow 0.3s, opacity 0.3s;
+    }
+
+    .btn-submit {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
         box-shadow: 0 4px 15px 0 rgba(74, 144, 226, 0.4);
     }
 
+    .btn-clear {
+        background-color: var(--danger-color);
+        box-shadow: 0 4px 15px 0 rgba(231, 76, 60, 0.4);
+        /* CHANGE 1: Hide the clear button by default */
+        display: none;
+    }
+    
     button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px 0 rgba(74, 144, 226, 0.5);
     }
 
     .result {
@@ -132,7 +147,7 @@
     <div class="container">
         <h1>AI Code Explainer 🧑‍💻</h1>
         <form action="/" method="POST">
-           
+            
             <label for="language">Select Language:</label>
             <select name="language" id="language">
                 <option value="Python">Python</option>
@@ -153,9 +168,12 @@
             </select>
             
             <label for="code_snippet">Paste Your Code Here:</label>
-            <textarea name="code_snippet" id="code_snippet" required></textarea>
+            <textarea name="code_snippet" id="code_snippet" required>{{ code_snippet or '' }}</textarea>
             
-            <button type="submit">Explain Code</button>
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Explain Code</button>
+                <button type="button" id="clearBtn" class="btn-clear">Clear</button>
+            </div>
         </form>
 
         {% if explanation %}
@@ -166,5 +184,43 @@
         {% endif %}
 
     </div>
+
+    <script>
+        const clearBtn = document.getElementById('clearBtn');
+        const codeTextarea = document.getElementById('code_snippet');
+
+        // Function to show/hide the clear button
+        function toggleClearButtonVisibility() {
+            if (codeTextarea.value.trim().length > 0) {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+        }
+
+        // Event listener for the clear button
+        clearBtn.addEventListener('click', function() {
+            // Clear the textarea
+            codeTextarea.value = '';
+
+            // Find and hide the result container
+            const resultContainer = document.querySelector('.result');
+            if (resultContainer) {
+                resultContainer.style.display = 'none';
+            }
+
+            // Hide the clear button itself
+            toggleClearButtonVisibility();
+
+            // Put the cursor back in the textarea
+            codeTextarea.focus();
+        });
+
+        // Event listener to check when user types in the textarea
+        codeTextarea.addEventListener('input', toggleClearButtonVisibility);
+
+        // Run the function once when the page loads to check for existing code
+        document.addEventListener('DOMContentLoaded', toggleClearButtonVisibility);
+    </script>
 </body>
 </html>
