@@ -11,7 +11,7 @@ A simple yet powerful web application built with Flask and LangChain that levera
 
 **Check out the live version of the app deployed on Render:**
 
-[**https://your-app-name.onrender.com**]([https://your-app-name.onrender.com](https://ai-code-explainer-tool.onrender.com))
+[**https://your-app-name.onrender.com**](https://ai-code-explainer-tool.onrender.com)
 
 *(Note: Free Render instances may take a minute to spin up if they've been inactive.)*
 
